@@ -32,6 +32,12 @@ logger.info 'MyApp Message'
 
 ```
 
+## Tests
+
+```
+rake spec
+```
+
 ## Contributing
 
 1. Fork it
