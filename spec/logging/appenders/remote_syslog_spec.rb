@@ -15,12 +15,13 @@ describe Logging::Appenders::RemoteSyslog do
     ident = 'Test'
     message = 'Test Message'
     level = :info
+    facility = 'local6'
 
     any_instance_of(RemoteSyslogLogger::UdpSender) do |s|
       stub(s).initialize do |*args|
         args[0].should == syslog_host
         args[1].should == syslog_port
-        args[2][:facility].should == 22
+        args[2][:facility].should == SyslogProtocol::FACILITIES[facility]
         args[2][:severity].should == 'info'
         args[2][:program].should == ident
       end
@@ -32,7 +33,7 @@ describe Logging::Appenders::RemoteSyslog do
 
     logger = Logging.logger['Test']
     logger.add_appenders(
-      Logging.appenders.remote_syslog(ident, syslog_server: syslog_host, port: syslog_port)
+      Logging.appenders.remote_syslog(ident, syslog_server: syslog_host, port: syslog_port, facility: facility)
       )
     logger.level = level
     logger.info("Test Message").should == true
