@@ -5,7 +5,6 @@ logging/remote-syslog is a remote syslog appender for use with the Logging libra
 ## Installation
 
 Add this line to your application's Gemfile:
-
     ```bash
     gem 'logging-remote-syslog'
     ```
