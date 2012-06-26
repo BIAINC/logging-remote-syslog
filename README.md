@@ -1,6 +1,6 @@
 # logging/remote-syslog
 
-logging/remote-syslog is a remote syslog appender for use with the Logging library.
+logging/remote-syslog is a remote syslog appender for use with the Logging library. ![Travis CI Status](https://secure.travis-ci.org/BIAINC/logging-remote-syslog.png)
 
 ## Installation
 
