@@ -139,9 +139,9 @@ module Logging::Appenders
       udp_sender = RemoteSyslogLogger::UdpSender.new(
         @syslog_server,
         @port,
-        facility: @facility,
-        severity: pri,
-        program: @ident
+        :facility => @facility,
+        :severity => pri,
+        :program => @ident
         )
 
       udp_sender.write(message)

@@ -44,13 +44,13 @@ describe Logging::Appenders::RemoteSyslog do
       end
 
       stub(s).write do |*args|
-        args.first.should == " #{level.upcase}  #{ident} : #{message}\n"
+        args.first.should == " #{level.to_s.upcase}  #{ident} : #{message}\n"
       end
     end
 
     logger = Logging.logger['Test']
     logger.add_appenders(
-      Logging.appenders.remote_syslog(ident, syslog_server: syslog_host, port: syslog_port, facility: facility)
+      Logging.appenders.remote_syslog(ident, :syslog_server => syslog_host, :port => syslog_port, :facility => facility)
       )
     logger.level = level
     logger.info("Test Message").should == true
