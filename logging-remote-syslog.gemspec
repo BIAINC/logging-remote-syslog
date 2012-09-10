@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
   gem.version       = File.read('./lib/logging/VERSION')
   gem.license       = 'MIT'
 
-  gem.add_runtime_dependency 'logging', '>= 1.7.2'
+  gem.add_runtime_dependency 'logging', '>= 1.6.1'
   gem.add_runtime_dependency 'remote_syslog_logger', '>= 1.0.3'
 
   gem.add_development_dependency 'rspec', '>= 2.10.0'
