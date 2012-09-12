@@ -55,4 +55,14 @@ describe Logging::Appenders::RemoteSyslog do
     logger.level = level
     logger.info("Test Message").should == true
   end
+
+  it 'strips shell codes by default' do
+    appender = Logging.appenders.remote_syslog('Test', :syslog_server => '127.0.0.1', :facility => SyslogProtocol::FACILITIES['local6'])
+    appender.prepare_message('\e[KTest Message\e[0m').should ==  'Test Message'
+  end
+
+  it 'should not strip shell code if asked' do
+    appender = Logging.appenders.remote_syslog('Test', :syslog_server => '127.0.0.1', :facility => SyslogProtocol::FACILITIES['local6'], :strip_colors => false)
+    appender.prepare_message('\e[KTest Message\e[0m').should ==  '\e[KTest Message\e[0m'
+  end
 end
