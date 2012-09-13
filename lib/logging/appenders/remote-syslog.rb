@@ -123,12 +123,7 @@ module Logging::Appenders
     end
 
     def prepare_message(message)
-      if @strip_colors
-        message = strip_ansi_colors(message)
-      else
-        message
-      end
-      message
+      @strip_colors ? strip_ansi_colors(message) : message
     end
 
     private
