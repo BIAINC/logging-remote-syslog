@@ -79,6 +79,8 @@ module Logging::Appenders
       @syslog_server =  opts.getopt(:syslog_server, '127.0.0.1')
       @port = opts.getopt(:port, 514, :as => Integer)
 
+      @strip_colors =  opts.getopt(:strip_colors, true)
+
       facility_name = opts.getopt(:facility, 'user')
 
       @facility = ::SyslogProtocol::FACILITIES[facility_name]
@@ -116,6 +118,13 @@ module Logging::Appenders
       @map = map
     end
 
+    def strip_ansi_colors(message)
+      message.gsub /\\e\[?.*?[\@-~]/, ''
+    end
+
+    def prepare_message(message)
+      @strip_colors ? strip_ansi_colors(message) : message
+    end
 
     private
 
@@ -144,7 +153,7 @@ module Logging::Appenders
         :program => @ident
         )
 
-      udp_sender.write(message)
+      udp_sender.write(prepare_message(message))
 
       self
     end
