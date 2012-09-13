@@ -19,6 +19,12 @@ Or install it yourself as:
     $ gem install logging-remote-syslog
     ```
 
+## Options
+:ident - [String] The identity of the sender
+:syslog_server [String] - The syslog server
+:strip_colors [True|False] - Some loggers like shell colors, should we remove them?
+:facility [String] - Something like local6
+
 ## Usage
 
 ```
