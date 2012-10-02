@@ -47,6 +47,9 @@ logger.info 'MyApp Message'
 rake
 ```
 
+## Change Log
+0.0.3 - Strip ANSI shell codes by default
+
 ## Contributing
 
 1. Fork it
