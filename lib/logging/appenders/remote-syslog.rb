@@ -119,7 +119,7 @@ module Logging::Appenders
     end
 
     def strip_ansi_colors(message)
-      message.gsub /\\e\[?.*?[\@-~]/, ''
+      message.gsub /\e\[?.*?[\@-~]/, ''
     end
 
     def prepare_message(message)
