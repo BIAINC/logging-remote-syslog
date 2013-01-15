@@ -25,7 +25,7 @@ Or install it yourself as:
     :syslog_server [String] - Syslog server hostname or IP (default: `127.0.0.1`)
     :port [Integer] - Syslog server port (default: `514`)
     :strip_colors [True|False] - Some loggers like shell colors, should we remove them? (default: `True`)
-    :facility [String] - A syslog [facility](https://github.com/papertrail/syslog_protocol/blob/master/lib/syslog_protocol/common.rb#L4-L29) name (default: `user`)
+    :facility [String] - A syslog facility name (default: `user`)
 
 ## Usage
 
