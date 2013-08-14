@@ -67,7 +67,7 @@ describe Logging::Appenders::RemoteSyslog do
   end
 
   it 'can modify original message' do
-    appender = Logging.appenders.remote_syslog('Test', :syslog_server => '127.0.0.1', :facility => SyslogProtocol::FACILITIES['local6'], :strip_colors => false, :modifier => ->(msg) {"foo: #{msg}"})
+    appender = Logging.appenders.remote_syslog('Test', :syslog_server => '127.0.0.1', :facility => SyslogProtocol::FACILITIES['local6'], :strip_colors => false, :modifier => lambda{|msg| "foo: #{msg}"})
     appender.prepare_message("Test").should ==  "foo: Test"
   end
 end
