@@ -34,6 +34,7 @@ module Logging::Appenders
     #    :syslog_server => address of the remote syslog server
     #    :port          => port of the remote syslog server
     #    :facility      => the syslog facility to use
+    #    :modifier      => an optional callback method for altering original message; takes original message and returns updated one
     #
     # The parameter :ident is a string that will be prepended to every
     # message. The :facility parameter encodes a default facility to be
@@ -78,6 +79,7 @@ module Logging::Appenders
       @ident = opts.getopt(:ident, name)
       @syslog_server =  opts.getopt(:syslog_server, '127.0.0.1')
       @port = opts.getopt(:port, 514, :as => Integer)
+      @modifier = opts.getopt(:modifier)
 
       @strip_colors =  opts.getopt(:strip_colors, true)
 
@@ -123,7 +125,9 @@ module Logging::Appenders
     end
 
     def prepare_message(message)
-      @strip_colors ? strip_ansi_colors(message) : message
+      message = @strip_colors ? strip_ansi_colors(message) : message
+      message = @modifier.call(message) if @modifier
+      message
     end
 
     private
