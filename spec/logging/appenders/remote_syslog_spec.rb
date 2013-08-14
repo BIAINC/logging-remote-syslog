@@ -65,4 +65,9 @@ describe Logging::Appenders::RemoteSyslog do
     appender = Logging.appenders.remote_syslog('Test', :syslog_server => '127.0.0.1', :facility => SyslogProtocol::FACILITIES['local6'], :strip_colors => false)
     appender.prepare_message("\e[KTest Message\e[0m").should ==  "\e[KTest Message\e[0m"
   end
+
+  it 'can modify original message' do
+    appender = Logging.appenders.remote_syslog('Test', :syslog_server => '127.0.0.1', :facility => SyslogProtocol::FACILITIES['local6'], :strip_colors => false, :modifier => lambda{|msg| "foo: #{msg}"})
+    appender.prepare_message("Test").should ==  "foo: Test"
+  end
 end

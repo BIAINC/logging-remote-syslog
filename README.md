@@ -26,6 +26,7 @@ Or install it yourself as:
     :port [Integer] - Syslog server port (default: `514`)
     :strip_colors [True|False] - Some loggers like shell colors, should we remove them? (default: `True`)
     :facility [String] - A syslog facility name (default: `user`)
+    :modifier [Method] - A callback for altering the original message (takes original message; returns modified one)
 
 ## Usage
 
