@@ -76,14 +76,14 @@ module Logging::Appenders
     # See SyslogProtocol::FACILITIES for the complete list of valid values.
     #
     def initialize( name, opts = {} )
-      @ident = opts.getopt(:ident, name)
-      @syslog_server =  opts.getopt(:syslog_server, '127.0.0.1')
-      @port = opts.getopt(:port, 514, :as => Integer)
-      @modifier = opts.getopt(:modifier)
+      @ident = opts[:ident] || name
+      @syslog_server =  opts[:syslog_server] || '127.0.0.1'
+      @port = opts[:port].to_i || 514
+      @modifier = opts[:modifier]
 
-      @strip_colors =  opts.getopt(:strip_colors, true)
+      @strip_colors =  opts[:strip_colors] || true
 
-      facility_name = opts.getopt(:facility, 'user')
+      facility_name = opts[:facility] ||  'user'
 
       @facility = ::SyslogProtocol::FACILITIES[facility_name]
 
@@ -91,7 +91,7 @@ module Logging::Appenders
       # to the syslog levels
       @map = ['debug', 'info', 'warn', 'err', 'crit']
 
-      map = opts.getopt(:map)
+      map = opts[:map]
       self.map = map unless map.nil?
 
       super
