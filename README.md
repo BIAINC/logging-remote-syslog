@@ -68,6 +68,7 @@ rake
 ```
 
 ## Change Log
+0.0.6 - Make it work in modern rubies (remove calls to getopt).
 0.0.3 - Strip ANSI shell codes by default
 
 ## Contributing
