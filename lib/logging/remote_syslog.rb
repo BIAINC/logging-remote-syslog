@@ -18,7 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-Dir['./spec/support/**/*.rb'].map { |f| require f }
+require 'logging/appender'
+require 'syslog_protocol/common'
+require 'remote_syslog_logger/udp_sender'
 
-require 'logging'
-require 'logging/remote_syslog'
+require 'logging/appenders/remote_syslog'
